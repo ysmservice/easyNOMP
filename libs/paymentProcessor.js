@@ -260,18 +260,18 @@ function SetupForPool(poolOptions, setupFinished) {
       /* Call redis to get an array of rounds - which are coinbase transactions and block heights from submitted
          blocks. */
       function(callback) {
-        logger.debug("Calling redis for array of rounds");
+        logger.debug("WATERFALL START - Calling redis for array of rounds");
         startRedisTimer();
         redisClient.multi([
           ['hgetall', coin + ':balances'],
           ['smembers', coin + ':blocksPending']
         ]).exec(function(error, results) {
-          logger.debug("Redis responsed: %s", JSON.stringify(results));
+          logger.debug("WATERFALL> Redis responsed: %s", JSON.stringify(results));
           endRedisTimer();
 
           if (error) {
-            logger.error('Could not get blocks from redis %s', JSON.stringify(error));
-            callback(true);
+            logger.error('WATERFALL> Could not get blocks from redis %s', JSON.stringify(error));
+            callback('WATERFALL> Could not get blocks from redis %s', JSON.stringify(error));
             return;
           }
 
@@ -305,7 +305,7 @@ function SetupForPool(poolOptions, setupFinished) {
            // handle duplicates if needed
             if (duplicateFound) {
                 var dups = rounds.filter(function(round){ return round.duplicate; });
-                logger.debug('Duplicate pending blocks found: ' + JSON.stringify(dups));
+                logger.debug('WATERFALL> Duplicate pending blocks found: ' + JSON.stringify(dups));
                 // attempt to find the invalid duplicates
                 var rpcDupCheck = dups.map(function(r){
                     return ['getblock', [r.blockHash]];
@@ -314,7 +314,7 @@ function SetupForPool(poolOptions, setupFinished) {
                 daemon.batchCmd(rpcDupCheck, function(error, blocks){
                     endRPCTimer();
                     if (error || !blocks) {
-                        logger.error('Error with duplicate block check rpc call getblock %s', JSON.stringify(error));
+                        logger.error('WATERFALL> Error with duplicate block check rpc call getblock %s', JSON.stringify(error));
                         return;
                     }
                     // look for the invalid duplicate block
@@ -324,20 +324,20 @@ function SetupForPool(poolOptions, setupFinished) {
                         if (block && block.result) {
                             // invalid duplicate submit blocks have negative confirmations
                             if (block.result.confirmations < 0) {
-                                logger.debug('Remove invalid duplicate block %s > %s', block.result.height, block.result.hash);
+                                logger.debug('WATERFALL> Remove invalid duplicate block %s > %s', block.result.height, block.result.hash);
                                 // move from blocksPending to blocksDuplicate...
                                 invalidBlocks.push(['smove', coin + ':blocksPending', coin + ':blocksDuplicate', dups[i].serialized]);
                             } else {
                                 // block must be valid, make sure it is unique
                                 if (validBlocks.hasOwnProperty(dups[i].blockHash)) {
                                     // not unique duplicate block
-                                    logger.debug('Remove non-unique duplicate block %s > %s', block.result.height, block.result.hash);
+                                    logger.debug('WATERFALL> Remove non-unique duplicate block %s > %s', block.result.height, block.result.hash);
                                     // move from blocksPending to blocksDuplicate...
                                     invalidBlocks.push(['smove', coin + ':blocksPending', coin + ':blocksDuplicate', dups[i].serialized]);
                                 } else {
                                     // keep unique valid block
                                     validBlocks[dups[i].blockHash] = dups[i].serialized;
-                                    logger.debug('Keep valid duplicate block %s > %s', block.result.height, block.result.hash);
+                                    logger.debug('WATERFALL> Keep valid duplicate block %s > %s', block.result.height, block.result.hash);
                                 }
                             }
                         }
@@ -351,19 +351,19 @@ function SetupForPool(poolOptions, setupFinished) {
                         redisClient.multi(invalidBlocks).exec(function(error, kicked){
                             endRedisTimer();
                             if (error) {
-                                logger.error('Error could not move invalid duplicate blocks in redis %s', JSON.stringify(error));
+                                logger.error('WATERFALL> Error could not move invalid duplicate blocks in redis %s', JSON.stringify(error));
                             }
                         });
                     } else {
                         // notify pool owner that we are unable to find the invalid duplicate blocks, manual intervention required...
-                        logger.error('Unable to detect invalid duplicate blocks, duplicate block payments on hold.');
+                        logger.error('WATERFALL> Unable to detect invalid duplicate blocks, duplicate block payments on hold.');
                     }
                 });
             }
-          logger.debug("Prepared info basic info about payments");
-          logger.silly("workers = %s", JSON.stringify(workers));
-          logger.silly("rounds = %s", JSON.stringify(rounds));
-          logger.debug("Workers count: %s Rounds: %s", Object.keys(workers).length, rounds.length);
+          logger.debug("WATERFALL> Prepared info basic info about payments");
+          logger.debug("WATERFALL> workers = %s", JSON.stringify(workers));
+          logger.debug("WATERFALL> rounds = %s", JSON.stringify(rounds));
+          logger.debug("WATERFALL> Workers count: %s Rounds: %s", Object.keys(workers).length, rounds.length);
           callback(null, workers, rounds);
         });
       },
@@ -371,7 +371,7 @@ function SetupForPool(poolOptions, setupFinished) {
       /* Does a batch rpc call to daemon with all the transaction hashes to see if they are confirmed yet.
          It also adds the block reward amount to the round object - which the daemon gives also gives us. */
       function(workers, rounds, callback) {
-        logger.debug("Checking for confirmed rounds (blocks)");
+        logger.debug("WATERFALL> Checking for confirmed rounds (blocks)");
         var batchRPCcommand = rounds.map(function(r) {
           return ['gettransaction', [r.txHash]];
         });
@@ -383,8 +383,8 @@ function SetupForPool(poolOptions, setupFinished) {
           endRPCTimer();
 
           if (error || !txDetails) {
-            logger.error('Check finished - daemon rpc error with batch gettransactions %s', JSON.stringify(error));
-            callback(true);
+            logger.error('WATERFALL> Check finished - daemon rpc error with batch gettransactions %s', JSON.stringify(error));
+            callback('WATERFALL> Check finished - daemon rpc error with batch gettransactions %s', JSON.stringify(error));
             return;
           }
 
@@ -396,7 +396,7 @@ function SetupForPool(poolOptions, setupFinished) {
               //because there may masternodes payees and pool address should be last
               //in zcoin its tx.address
               addressAccount = tx.result || tx.address;
-              logger.warn("Could not retrieve account for %s from RPC (no tx.result or tx.address field) %s", poolOptions.address, JSON.stringify(tx));
+              logger.warn("WATERFALL> Could not retrieve account for %s from RPC (no tx.result or tx.address field) %s", poolOptions.address, JSON.stringify(tx));
               return;
             }
 
@@ -406,17 +406,17 @@ function SetupForPool(poolOptions, setupFinished) {
                 round.confirmations = parseInt((tx.result.confirmations || 0));
             }
             if (tx.error && tx.error.code === -5) {
-              logger.warn('Daemon reports invalid transaction: %s', round.txHash);
-              logger.debug('Filtering out round %s as kicked cause of invalid tx', round.height);
+              logger.warn('WATERFALL> Daemon reports invalid transaction: %s', round.txHash);
+              logger.debug('WATERFALL> Filtering out round %s as kicked cause of invalid tx', round.height);
               round.category = 'kicked';
               return;
             } else if (!tx.result.details || (tx.result.details && tx.result.details.length === 0)) {
-              logger.warn('Daemon reports no details for transaction: %s');
-              logger.debug('Filtering out round %s as kicked cause of no details for transaction', round.height);
+              logger.warn('WATERFALL> Daemon reports no details for transaction: %s');
+              logger.debug('WATERFALL> Filtering out round %s as kicked cause of no details for transaction', round.height);
               round.category = 'kicked';
               return;
             } else if (tx.error || !tx.result) {
-              logger.error('Odd error with gettransaction %s. tx = %s', round.txHash, JSON.stringify(tx));
+              logger.error('WATERFALL> Odd error with gettransaction %s. tx = %s', round.txHash, JSON.stringify(tx));
               round.category = 'kicked';
               return;
             }
@@ -431,7 +431,7 @@ function SetupForPool(poolOptions, setupFinished) {
             }
 
             if (!generationTx) {
-              logger.error('Missing output details to pool address for transaction %s', round.txHash);
+              logger.error('WATERFALL> Missing output details to pool address for transaction %s', round.txHash);
               return;
             }
 
@@ -470,9 +470,9 @@ function SetupForPool(poolOptions, setupFinished) {
           });
 
 
-          logger.silly("Wokers and rounds after filtering orphans etc.");
-          logger.silly("workers = %s", JSON.stringify(workers));
-          logger.silly("rounds = %s", JSON.stringify(rounds));
+          logger.debug("WATERFALL> Wokers and rounds after filtering orphans etc.");
+          logger.debug("WATERFALL> workers = %s", JSON.stringify(workers));
+          logger.debug("WATERFALL> rounds = %s", JSON.stringify(rounds));
           callback(null, workers, rounds, addressAccount);
 
         });
@@ -482,41 +482,41 @@ function SetupForPool(poolOptions, setupFinished) {
       /* Does a batch redis call to get shares contributed to each round. Then calculates the reward
          amount owned to each miner for each round. */
       function(workers, rounds, addressAccount, callback) {
-        logger.debug("Getting all shares for rounds and calculating rewards for miners");
+        logger.debug("WATERFALL> Getting all shares for rounds and calculating rewards for miners");
         var shareLookups = rounds.map(function(r) {
           return ['hgetall', coin + ':shares:round' + r.height]
         });
 
-        logger.silly('Calling redis for %s', JSON.stringify(shareLookups));
+        logger.silly('WATERFALL> Calling redis for %s', JSON.stringify(shareLookups));
 
         startRedisTimer();
         redisClient.multi(shareLookups).exec(function(error, allWorkerShares) {
           endRedisTimer();
-          logger.silly('Response from redis allWorkerShares = %s', JSON.stringify(allWorkerShares));
+          logger.silly('WATERFALL> Response from redis allWorkerShares = %s', JSON.stringify(allWorkerShares));
           
           if (error) {
-          	logger.error('Check finished - redis error with multi get rounds share');
-            callback('Check finished - redis error with multi get rounds share');
+          	logger.error('WATERFALL> Check finished - redis error with multi get rounds share');
+            callback('WATERFALL> Check finished - redis error with multi get rounds share');
             return;
           }
 
-          logger.silly('allWorkerShares before merging %s', JSON.stringify(allWorkerShares));
+          logger.silly('WATERFALL> allWorkerShares before merging %s', JSON.stringify(allWorkerShares));
 
-          logger.debug("Mapping workers into payout addresses");
+          logger.debug("WATERFALL> Mapping workers into payout addresses");
           // This snippet will parse all workers and merge different workers into 1 payout address
           allWorkerShares = allWorkerShares.map((roundShare) => {
             let resultForRound = {};
-            logger.debug("roundShare = %s", roundShare);
+            logger.debug("WATERFALL> roundShare = %s", roundShare);
 
             Object.keys(roundShare).forEach((workerStr) => {
-              logger.debug("Iterating worker %s", workerStr);
+              logger.debug("WATERFALL> Iterating worker %s", workerStr);
               //test workername is not null (those may be if miner mine on stratum without user and worker)
               if (workerStr) {
               	
                 if (workerStr.indexOf(".") !== -1) {
                 	
                   //we have address and worker
-                  logger.silly("%s worker have both payout address and worker, merging", workerStr);
+                  logger.silly("WATERFALL> %s worker have both payout address and worker, merging", workerStr);
                   let workerInfo = workerStr.split('.');
                   if (workerInfo.length === 2) {
 
@@ -538,9 +538,9 @@ function SetupForPool(poolOptions, setupFinished) {
 	                    
                     if (resultForRound[address]) {
                     	
-                      logger.silly("Already have balance for address %s : %s", address, resultForRound[address].toString(10));
+                      logger.silly("WATERFALL> Already have balance for address %s : %s", address, resultForRound[address].toString(10));
                       resultForRound[address] = resultForRound[address].plus(roundShare[workerStr]);
-                      logger.silly("New balance %s ", resultForRound[address].toString(10));
+                      logger.silly("WATERFALL> New balance %s ", resultForRound[address].toString(10));
                       
                     } else {
                     	
@@ -561,12 +561,12 @@ function SetupForPool(poolOptions, setupFinished) {
 	                //todo validate by daemon
 	                let address = workerStr;      
 	                
-	                /*daemon.cmd('validateaddress', [address], function(result) {
+	                daemon.cmd('validateaddress', [address], function(result) {
 						if (result.error){
-						    logger.error('Error with payment processing daemon ' + JSON.stringify(result.error));
+						    logger.error('WATERFALL> Error with payment processing daemon ' + JSON.stringify(result.error));
 //						    callback('Error with payment processing daemon ' + JSON.stringify(result.error));
 						}
-					}, true);*/
+					}, true);
 		        
 					// KTHXFIX-1-VALIDATION												*!*!!*!*!*!*!*!*!**!*!*!*!!**!*!*!*!*!*!**!*!*!*!*!*!**
 	                
@@ -574,9 +574,9 @@ function SetupForPool(poolOptions, setupFinished) {
 	                // ATTRIBUTION OF SHARE TO THE WORKER
 					if (resultForRound[address]) {
 			
-						logger.silly("Already have balance for address %s : %s", address, resultForRound[address].toString(10));
+						logger.silly("WATERFALL> Already have balance for address %s : %s", address, resultForRound[address].toString(10));
 						resultForRound[address] = resultForRound[address].plus(roundShare[workerStr]);
-						logger.silly("New balance %s ", resultForRound[address].toString(10));
+						logger.silly("WATERFALL> New balance %s ", resultForRound[address].toString(10));
 			
 					} else {
 			

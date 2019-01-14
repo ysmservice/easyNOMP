@@ -215,10 +215,10 @@ module.exports = function() {
       var shareDataJsonStr = JSON.stringify(data);
 
       if (data.blockHash && !isValidBlock) {
-        logger.info('We thought a block was found but it was rejected by the daemon, share data: %s' + shareDataJsonStr);
+        logger.info('ATTN> We thought a block was found but it was rejected by the daemon, share data: %s' + shareDataJsonStr);
       } else if (isValidBlock) {
-        logger.info('Block found: %s by %s', data.blockHash, data.worker);
-        logger.info('Block info: %s', JSON.stringify(data));
+        logger.info('ATTN> Block found: %s by %s', data.blockHash, data.worker);
+        logger.info('ATTN> Block info: %s', JSON.stringify(data));
       }
         
       if (isValidShare) {

@@ -34,6 +34,7 @@ try {
     if (cluster.isWorker)
         logger.debug('New WORKER Relic initiated PID ${process.pid}');
 } catch (e) {
+        logger.debug('RELIC ERR: %s', JSON.stringify(e));
 }
 
 
