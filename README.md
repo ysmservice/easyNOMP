@@ -4,7 +4,7 @@
 
 Please save your configuration files, and reinstall your pools using the official EasyNOMP repository:
 
-https://github.com/EasyX-Community/EasyNOMP
+### Official Repository: https://github.com/EasyX-Community/EasyNOMP
 
 I would like to remind everyone that the Hijacked copy will have bugs, and no support.
 
