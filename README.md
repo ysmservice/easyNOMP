@@ -1,6 +1,6 @@
 # OUR REPOSITORY WAS HIJACKED
 
-In order to fix this, we must HARD fork and create our own entire project.
+## In order to fix this, we must HARD fork and re-create our entire project.
 
 Please save your configuration files, and reinstall your pools using the official EasyNOMP repository:
 
@@ -10,6 +10,8 @@ I would like to remind everyone that the Hijacked copy will have bugs, and no su
 
 The official copy has support, bug fixes, and continued development. It also has me, and I am irreplaceable.
 
-Thank you!
+EasyNOMP is now fixed, and I will resume development shortly!
 
-~ LeshaCat
+#### Thank you & enjoy!
+
+#### ~ LeshaCat
