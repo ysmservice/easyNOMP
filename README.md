@@ -15,3 +15,5 @@ EasyNOMP is now fixed, and I will resume development shortly!
 #### Thank you & enjoy!
 
 #### ~ LeshaCat
+
+P.S. Also note that PR's will no longer be made, as it is near impossible with a completely seperate project (which I had to do to save our hijacked project)
