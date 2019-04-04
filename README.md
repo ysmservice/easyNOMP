@@ -1,8 +1,8 @@
 # OUR REPOSITORY WAS HIJACKED
 
-I have decided to keep this repository open as the main repository and will keep the secondary repository under the name "EasyNOMP" so that our project is listed when you search for "EasyNOMP".
+## I have decided to use this repository as the development copy.
 
-I will maintain the code under this repository, and then copy/update the "EasyNOMP" repository.
+If you would like the stable copy, please visit the EasyNOMP repository here: https://github.com/EasyX-Community/EasyNOMP
 
 The code will be restored shortly...
 
