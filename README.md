@@ -1,6 +1,8 @@
 # [EasyNOMP](https://github.com/EasyX-Community/EasyNOMP), a fork of [BootNOMP](https://github.com/1301313Y/BootNOMP) and [NOMP](https://github.com/foxer666/node-open-mining-portal)
 ##### Making it easy to install and configure NOMP!
-##### Current Version: v1.1.4
+##### Current Version: v1.1.4-dev
+
+### THIS IS THE [DEVELOPMENT COPY](https://github.com/EasyX-Community/EasyNOMP-dev)! FOR STABLE COPY PLEASE CLONE [EasyNOMP](https://github.com/EasyX-Community/EasyNOMP)
 
 -------
 
