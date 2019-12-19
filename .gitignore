@@ -25,12 +25,9 @@ config.json
 lzCode.conf
 matomoCode.conf
 
-<<<<<<< HEAD
 coins/*.json
 !coins/*_example.json
 
-=======
->>>>>>> c77a81d0d821dcc14fa84f0e00d477331c6cdd64
 pool_configs/*.json
 !pool_configs/*_example.json
 
