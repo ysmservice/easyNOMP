@@ -25,6 +25,9 @@ config.json
 lzCode.conf
 matomoCode.conf
 
+coins/*.json
+!coins/*_example.json
+
 pool_configs/*.json
 !pool_configs/*_example.json
 
