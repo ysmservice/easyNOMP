@@ -97,8 +97,10 @@ pm2 save
 ```
 cd EasyNOMP
 git pull
+rm -rf node_modules
 npm update -g
-npm --depth 9999 update
+npm update -g npm
+npm install
 npm audit fix
 ./pool-restart.sh
 ```
