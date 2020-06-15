@@ -9,7 +9,9 @@ Simply create a user for the pool to run as, and log in to that user.
 Run this command
 
 ```
-# Please be careful, this script may or may not work :P Manual install preferable.
+# Please be careful, this script may or may not work :P
+# Manual install preferable.
+#
 git clone https://github.com/EasyX-Community/EasyNOMP.git ; cd EasyNOMP ; ./install.sh ;
 ```
 **Done!**
