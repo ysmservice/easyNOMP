@@ -31,8 +31,8 @@ sudo systemctl enable ntp
 sudo systemctl start ntp
 wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
 source ~/.bashrc
-nvm install v8.1.4
-nvm use v8.1.4
+nvm install 8
+nvm use 8
 npm update -g
 npm install -g pm2@latest
 npm install -g npm@latest
