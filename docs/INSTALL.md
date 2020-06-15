@@ -50,7 +50,7 @@ redis-cli FLUSHALL
 ### Install Pool
 ```
 git clone https://github.com/EasyX-Community/EasyNOMP.git
-cd BootNOMP
+cd EasyNOMP
 npm install
 npm update
 npm audit fix
