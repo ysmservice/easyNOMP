@@ -61,17 +61,17 @@ npm audit fix
 ### Watching Pool Logs
 ```
 ./pool-logs-watch.sh # Watch regular logs
-or
+
 ./pool-logs-watch.sh " BTCADDRESSTOSCANFOR " # Scan for a coin address
-or
+
 ./pool-logs-watch.sh "block>accepted>" # Scan for accepted blocks
-or
+
 ./pool-logs-watch.sh "block>rejected>" # Scan for a rejected blocks
-or
+
 ./pool-logs-watch.sh "share>accepted>" # Scan for accepted shares
-or
+
 ./pool-logs-watch.sh "share>rejected>" # Scan for rejected shares
-or
+
 ./pool-logs-watch.sh "DIFFICULTY>" # Scan for difficulty updates
 ```
 
