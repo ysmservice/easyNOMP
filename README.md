@@ -5,13 +5,7 @@
 -------
 
 ***EasyNOMP pool is live, come mine PEXA @ [https://easyxpool.tk/](http://easyxpool.tk/)***<br />
-***EasyNOMP development pool is live @ [https://dev.easyxpool.tk/](https://dev.easyxpool.tk/news)***<br /><br />
-***Visit the EasyX Community website: https://www.easyx.info/***<br />
 ***Visit the Pexa Project website: https://www.pexaproject.com/***
-
-***2019/08/11 - I have uploaded a SECURITY UPDATE to anonymize IP's within logfiles. Please see issue [ticket #49](https://github.com/EasyX-Community/EasyNOMP/issues/49)***<br />
-***2019/08/08 - I have uploaded a fixed version to the main repository. [https://dev.easyxpool.tk/](https://dev.easyxpool.tk/news)***<br />
-****To update EasyNOMP check out issue [ticket #50](https://github.com/EasyX-Community/EasyNOMP/issues/50#issue-479355535)***
 
 ***EasyNOMP has been abandoned due to never ending list of improvements. You may fork and finish where I left off. Still many bugs and things to do from it's original programmer. I gave up because the workload was way too much.***
 
