@@ -13,7 +13,7 @@
 ***2019/08/08 - I have uploaded a fixed version to the main repository. [https://dev.easyxpool.tk/](https://dev.easyxpool.tk/news)***<br />
 ****To update EasyNOMP check out issue [ticket #50](https://github.com/EasyX-Community/EasyNOMP/issues/50#issue-479355535)***
 
-***EasyNOMP Discord support is DISCONTINUED! You may fork and finish where I left off. Still many bugs from it's original programmer.***
+***EasyNOMP Discord support is DISCONTINUED! You may fork and finish where I left off. Still many bugs and things to do from it's original programmer.***
 
 -------
 ### Features
