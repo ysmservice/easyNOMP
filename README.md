@@ -186,7 +186,7 @@ Changelog is in in the directory [docs/CHANGELOG.md](https://github.com/EasyX-Co
 
 ### Plz Buy Me Some Coffee?
 
-This is my new Full-Time job and it pays nothing. I drink about 3 pots a day... I will love you forever!
+Abandoned project. Donate if you like, but no development is being done as I've abandoned the project. If you would like to take over, simply fork the repository by clicking "fork" in the top right. You may edit these addresses and place your own.
 
 
 BTC: `18TmiWzbMLyf7MvQMcNWh3hUBVrxBgzrWi`
