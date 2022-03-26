@@ -180,7 +180,7 @@ Changelog is in in the directory [docs/CHANGELOG.md](https://github.com/EasyX-Co
 
 ### Plz Buy Me Some Coffee?
 
-Donate if you like, but no development is being done as I've abandoned the project a long time ago due to workload and irrelevance (check out pexaproject.com). If you would like to take over, simply fork the repository by clicking "fork" in the top right. You may edit these addresses and place your own.
+Donate if you like, but not much development is being done. I may add a few easy to do features. If you would like to take over, simply fork the repository by clicking "fork" in the top right.
 
 
 BTC: `bc1qffd7j4jdspfjc8mr05g8yqfncjfdnzamec53tr`
