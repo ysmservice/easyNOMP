@@ -14,15 +14,17 @@
 |   | Feature | Developer(s) |
 | ------------- | ------------- | ------------- |
 | **✓** | **Support for 43 Algorithms** / Such hashing, much blocks! | [foxer666](//github.com/foxer666), [zone117x](//github.com/zone117x), [1301313Y](//github.com/1301313Y) |
-| **✓** | **Algorithm Auto-Switching** / To keep you making profit! | [foxer666](//github.com/foxer666), [zone117x](//github.com/zone117x), [1301313Y](//github.com/1301313Y) |
-| **✓** | **Patches pulled from everywhere** / To keep EasyNOMP working, up to date, and secure! | [MooLeshaCat](//github.com/mooleshacat) |
-| **✓** | **SSL Enabled Dashboard** / To keep you safe &amp; secure! | [MooLeshaCat](//github.com/mooleshacat) |
+| **✓** | **Algorithm Auto-Switching** / To keep you making profit | [foxer666](//github.com/foxer666), [zone117x](//github.com/zone117x), [1301313Y](//github.com/1301313Y) |
+| **✓** | **Patches from everywhere** / To keep EasyNOMP working, up to date, and secure | [MooLeshaCat](//github.com/mooleshacat) |
+| **✓** | **SSL Enabled Dashboard** / To keep you safe &amp; secure | [MooLeshaCat](//github.com/mooleshacat) |
 | **✓** | **Clear Documentation** / To help you install & configure EasyNOMP | [MooLeshaCat](//github.com/mooleshacat) |
 | **✓** | **Additional Statistics Information** / To keep you informed | [1301313Y](//github.com/1301313Y) |
-| **✓** | **Install Script** / No dependancy problems! | [MooLeshaCat](//github.com/mooleshacat) |
-| **✓** | **SEO Optimized** / So you don't have to! | [1301313Y](//github.com/1301313Y), [MooLeshaCat](//github.com/mooleshacat) |
-| **✓** | **Donation Addresses** / To make donation collection easier! | [MooLeshaCat](//github.com/mooleshacat) |
-| **✓** | **Matomo/Livezilla Support** / To make tracking and support easier! | [MooLeshaCat](//github.com/mooleshacat) |
+| **✓** | **Install Script** / No dependancy problems | [MooLeshaCat](//github.com/mooleshacat) |
+| **✓** | **SEO Optimized** / So you don't have to | [1301313Y](//github.com/1301313Y), [MooLeshaCat](//github.com/mooleshacat) |
+| **✓** | **Donation Addresses** / To make donation collection easier | [MooLeshaCat](//github.com/mooleshacat) |
+| **✓** | **Matomo/Livezilla Support** / To make tracking and support easier | [MooLeshaCat](//github.com/mooleshacat) |
+| **✓** | **Multi-coin Block Explorer** / For easier navigation | [MooLeshaCat](//github.com/mooleshacat) |
+| **✓** | **Menu + Explorer Icons** / To make block explorer look cool 😎 | [MooLeshaCat](//github.com/mooleshacat) |
 
 -------
 
@@ -96,7 +98,7 @@ Changelog is in in the directory [docs/CHANGELOG.md](https://github.com/EasyX-Co
 | ✓ | __Scrypt__ | tested with AntiLiteCoin, 1CREDIT, ArgusCoin, WAYAWOLFCOIN and many others |
 | ✓ | __SHA256__ | tested with VCOIN, don't use with BTC, no Segwit tested |
 | ✓ | __X11__ | tested with BrainCoin, CannabisCoin, AdzCoin and many others |
-| ✓ | __X16r__ | tested with RavenCoin, PexaCoin, Placeholders, TragoCoin - Fail: BitCash |
+| ✓ | __X16r__ | tested with RavenCoin, TragoCoin - Fail: BitCash |
 | ✓ | __Yescrypt__ | needs tests, though should work |
 | ✓ | __YescryptR16__ | needs tests, though should work |
 | ✓ | __YescryptR32__ | currently being tested with WaviCoin. shares work, payments unconfirmed |
@@ -131,6 +133,7 @@ Changelog is in in the directory [docs/CHANGELOG.md](https://github.com/EasyX-Co
 | ? | __X13__ | need tests |
 | ? | __X14__ | need tests |
 | ? | __X15__ | need tests |
+| ? | __X16Rv2__ | need tests |
 | ? | __zr5__ | need tests |
 | ? | __ziftr__ | need tests |
 
@@ -157,7 +160,7 @@ Changelog is in in the directory [docs/CHANGELOG.md](https://github.com/EasyX-Co
 ### Credits
 | User | Comment|
 | ------------- | ------------- |
-| [MooLeshaCat](//github.com/mooleshacat) / [EasyX-Community](//github.com/EasyX-Community/) | How could anyone forget the original [leshacat/EasyNOMP](//github.com/EasyX-Community/EasyNOMP) dev?<br /> - Fixed lots of documentation, configuration, and block explorer<br /> - Fixed some API and Redis issues<br /> - Made block explorer multi-coin<br /> - Added cool icons to block explorer + menu |
+| [MooLeshaCat](//github.com/mooleshacat) / [EasyX-Community](//github.com/EasyX-Community/) | - Fixed lots of documentation, configuration, and block explorer<br /> - Fixed some API and Redis issues<br /> - Made block explorer multi-coin<br /> - Added cool icons to block explorer + menu |
 | [foxer666](//github.com/foxer666) | How could anyone forget the original [foxer666/node-open-mining-portal](https://github.com/foxer666/node-open-mining-portal) devs? |
 | [zone117x](//github.com/zone117x) | How could anyone forget the original [zone117x/node-open-mining-portal](https://github.com/zone117x/node-open-mining-portal) devs? |
 | [1301313Y](//github.com/1301313Y) | How could anyone forget the original [1301313Y/BootNOMP](https://github.com/1301313Y/BootNOMP) dev? |
