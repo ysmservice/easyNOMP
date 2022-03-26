@@ -15,19 +15,19 @@
 | ------------- | ------------- | ------------- |
 | **✓** | **Support for 43 Algorithms** / Such hashing, much blocks! | [foxer666](//github.com/foxer666), [zone117x](//github.com/zone117x), [1301313Y](//github.com/1301313Y) |
 | **✓** | **Algorithm Auto-Switching** / To keep you making profit! | [foxer666](//github.com/foxer666), [zone117x](//github.com/zone117x), [1301313Y](//github.com/1301313Y) |
-| **✓** | **Patches pulled from everywhere** / To keep EasyNOMP working, up to date, and secure! | [LeshaCat](//github.com/leshacat) |
-| **✓** | **SSL Enabled Dashboard** / To keep you safe &amp; secure! | [LeshaCat](//github.com/leshacat) |
-| **✓** | **Clear Documentation** / To help you install & configure EasyNOMP | [LeshaCat](//github.com/leshacat) |
+| **✓** | **Patches pulled from everywhere** / To keep EasyNOMP working, up to date, and secure! | [MooLeshaCat](//github.com/mooleshacat) |
+| **✓** | **SSL Enabled Dashboard** / To keep you safe &amp; secure! | [MooLeshaCat](//github.com/mooleshacat) |
+| **✓** | **Clear Documentation** / To help you install & configure EasyNOMP | [MooLeshaCat](//github.com/mooleshacat) |
 | **✓** | **Additional Statistics Information** / To keep you informed | [1301313Y](//github.com/1301313Y) |
-| **✓** | **Install Script** / No dependancy problems! | [LeshaCat](//github.com/leshacat) |
+| **✓** | **Install Script** / No dependancy problems! | [MooLeshaCat](//github.com/mooleshacat) |
 | **✓** | **SEO Optimized** / So you don't have to! | [1301313Y](//github.com/1301313Y), [LeshaCat](//github.com/leshacat) |
-| **✓** | **Donation Addresses** / To make donation collection easier! | [LeshaCat](//github.com/leshacat) |
-| **✓** | **Matomo/Livezilla Support** / To make tracking and support easier! | [LeshaCat](//github.com/leshacat) |
+| **✓** | **Donation Addresses** / To make donation collection easier! | [MooLeshaCat](//github.com/mooleshacat) |
+| **✓** | **Matomo/Livezilla Support** / To make tracking and support easier! | [MooLeshaCat](//github.com/mooleshacat) |
 
 -------
 
 ### Helping give NOMP & BootNOMP new life, with some style!
-***LeshaCat:*** _"[EasyX-Community/EasyNOMP](https://github.com/EasyX-Community/EasyNOMP) is built for the [EasyX Community](http://www.easyx.info/) & [Pool](http://easyxpool.tk/). EasyNOMP is based off of [1301313Y/BootNOMP](https://github.com/1301313Y/BootNOMP). It's focus is to add patches, bug fixes, features, and quality documentation to BootNOMP to make it easy to install. BootNOMP gives NOMP a sleek looking new design, and fully re-designed and re-coded user interface! I saw the original dev working on BootNOMP and the source code and figured I could lend a hand. I have plans to rework the documentation, Block Explorer, Docker source, and some various configuration options. I decided a soft fork would be best suited. If you would like to contribute, please consider looking at the parent project [1301313Y/BootNOMP](https://github.com/1301313Y/BootNOMP) and original project [foxer666/node-open-mining-portal](https://github.com/foxer666/node-open-mining-portal) first, as these two guys are the only ones who are helping get the NOMP rebirthing process started."_
+***MooLeshaCat:*** _"[EasyX-Community/EasyNOMP](https://github.com/EasyX-Community/EasyNOMP) is built for the [EasyX Community](http://www.easyx.cc/) & [EasyX Pool](http://pool.easyx.cc/). EasyNOMP is based off of [1301313Y/BootNOMP](https://github.com/1301313Y/BootNOMP). It's focus is to add patches, bug fixes, features, and quality documentation to BootNOMP to make it easy to install. BootNOMP gives NOMP a sleek looking new design, and fully re-designed and re-coded user interface! I saw the original dev working on BootNOMP and the source code and figured I could lend a hand. I have plans to rework the documentation, Block Explorer, Docker source, and some various configuration options. I decided a soft fork would be best suited. If you would like to contribute, please consider looking at the parent project [1301313Y/BootNOMP](https://github.com/1301313Y/BootNOMP) and original project [foxer666/node-open-mining-portal](https://github.com/foxer666/node-open-mining-portal) first, as these two guys are the only ones who are helping get the NOMP rebirthing process started."_
 
 ***NOTE:*** _Want to help out? You can fork this repository by clicking "fork" in the top right._<br />
 
@@ -157,7 +157,7 @@ Changelog is in in the directory [docs/CHANGELOG.md](https://github.com/EasyX-Co
 ### Credits
 | User | Comment|
 | ------------- | ------------- |
-| [LeshaCat](//github.com/leshacat) / [EasyX-Community](//github.com/EasyX-Community/) | How could anyone forget the original [leshacat/EasyNOMP](https://github.com/leshacat/EasyNOMP) dev?<br /> - Fixed lots of documentation, configuration, and block explorer<br /> - Fixed some API and Redis issues |
+| [MooLeshaCat](//github.com/mooleshacat) / [EasyX-Community](//github.com/EasyX-Community/) | How could anyone forget the original [leshacat/EasyNOMP](//github.com/EasyX-Community/EasyNOMP) dev?<br /> - Fixed lots of documentation, configuration, and block explorer<br /> - Fixed some API and Redis issues |
 | [foxer666](//github.com/foxer666) | How could anyone forget the original [foxer666/node-open-mining-portal](https://github.com/foxer666/node-open-mining-portal) devs? |
 | [zone117x](//github.com/zone117x) | How could anyone forget the original [zone117x/node-open-mining-portal](https://github.com/zone117x/node-open-mining-portal) devs? |
 | [1301313Y](//github.com/1301313Y) | How could anyone forget the original [1301313Y/BootNOMP](https://github.com/1301313Y/BootNOMP) dev? |
