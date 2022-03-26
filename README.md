@@ -4,10 +4,10 @@
 
 -------
 
-***EasyNOMP pool is live, come mine PEXA @ [https://easyxpool.tk/](http://easyxpool.tk/)***<br />
+***EasyNOMP pool is live, come mine PEXA @ [https://pool.easyx.cc/](http://pool.easyx.cc/)***<br />
 ***Visit the Pexa Project website: https://www.pexaproject.com/***
 
-***EasyNOMP has been abandoned due to never ending list of improvements. You may fork and finish where I left off. Still many bugs and things to do from it's original programmer. I gave up because the workload was way too much.***
+***EasyNOMP has been abandoned due to never ending list of improvements. There may be one or two improvements but no plans to maintain the source code long term.***
 
 -------
 ### Features
