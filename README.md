@@ -183,15 +183,17 @@ Changelog is in in the directory [docs/CHANGELOG.md](https://github.com/EasyX-Co
 Donate if you like, but no development is being done as I've abandoned the project a long time ago due to workload and irrelevance (check out pexaproject.com). If you would like to take over, simply fork the repository by clicking "fork" in the top right. You may edit these addresses and place your own.
 
 
-BTC: `18TmiWzbMLyf7MvQMcNWh3hUBVrxBgzrWi`
+BTC: `bc1qffd7j4jdspfjc8mr05g8yqfncjfdnzamec53tr`
 
-LTC: `LX1fUwLVcAaRXvP67ZcqUvjjteaKx1nAvL`
+LTC: `ltc1q8afdasd2qanphs82rqvetzu8yrk2kq6y4fqvrn`
+
+ETC: `0x9e640ED8A6dE77D175b7c600A694426a00Cd16c2`
+
+ETH/ERC20: `0x784207DC134B61E0bD7edA658aa830e8FD12A7c7`
 
 ZEN: `znWtGC6b3FXn8kY5ewgfy2LfP1ppL9CF1Tc`
 
-BSC: `0xc89eEa9b5C0cfa7f583dc1A6405a7d5730ADB603`
-
-ETH/ERC20: `0xc89eEa9b5C0cfa7f583dc1A6405a7d5730ADB603`
+BSC: `0x784207DC134B61E0bD7edA658aa830e8FD12A7c7`
 
 XMR: `84wwa7EKo8uasZAHijHKtBTuBaMPuNjCJgnfGJrsLFo4aZcfrzGvUX33sSeFNdno8fPiTDGnz4h1bCvsdFQYWRuR2619FzS`
 
