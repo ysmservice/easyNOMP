@@ -20,7 +20,7 @@
 | **✓** | **Clear Documentation** / To help you install & configure EasyNOMP | [MooLeshaCat](//github.com/mooleshacat) |
 | **✓** | **Additional Statistics Information** / To keep you informed | [1301313Y](//github.com/1301313Y) |
 | **✓** | **Install Script** / No dependancy problems! | [MooLeshaCat](//github.com/mooleshacat) |
-| **✓** | **SEO Optimized** / So you don't have to! | [1301313Y](//github.com/1301313Y), [LeshaCat](//github.com/leshacat) |
+| **✓** | **SEO Optimized** / So you don't have to! | [1301313Y](//github.com/1301313Y), [MooLeshaCat](//github.com/mooleshacat) |
 | **✓** | **Donation Addresses** / To make donation collection easier! | [MooLeshaCat](//github.com/mooleshacat) |
 | **✓** | **Matomo/Livezilla Support** / To make tracking and support easier! | [MooLeshaCat](//github.com/mooleshacat) |
 
