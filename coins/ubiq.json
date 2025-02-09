@@ -1,0 +1,24 @@
+{
+    "name": "Ubiq",
+    "symbol": "UBQ",
+    "algorithm": "ubqhash",
+    "parameters": {
+        "epoch_length": 30000,
+        "dag_size": 4294967296,
+        "cache_size": 16777216
+    },
+    "peerMagic": "0x1fb7848b",
+    "txfee": 0.0001,
+    "explorerGetBlockJSON": "https://ubiqscan.io/api/block/[HASH]",
+    "explorerGetBlockByHeightJSON": "https://ubiqscan.io/api/blockhash/[HEIGHT]",
+    "explorerGetTXJSON": "https://ubiqscan.io/api/tx/[HASH]",
+    "blockTime": 88,
+    "blockReward": 1,
+    "rewardMinimum": 0.01,
+    "daemon": {
+        "host": "127.0.0.1",
+        "port": 8588,
+        "user": "username",
+        "password": "password"
+    }
+}

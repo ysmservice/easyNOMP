@@ -1,0 +1,24 @@
+{
+    "name": "MeowCoin",
+    "symbol": "MEOW",
+    "algorithm": "meowpow",
+    "parameters": {
+        "epoch_length": 7500,
+        "dag_size": 2147483648,
+        "cache_size": 16777216
+    },
+    "peerMagic": "c1c1c1c1",
+    "txfee": 0.0001,
+    "explorerGetBlockJSON": "https://explorer.meowcoin.org/api/block/[HASH]",
+    "explorerGetBlockByHeightJSON": "https://explorer.meowcoin.org/api/blockhash/[HEIGHT]",
+    "explorerGetTXJSON": "https://explorer.meowcoin.org/api/tx/[HASH]",
+    "blockTime": 150,
+    "blockReward": 50,
+    "rewardMinimum": 0.01,
+    "daemon": {
+        "host": "127.0.0.1",
+        "port": 9333,
+        "user": "username",
+        "password": "password"
+    }
+}

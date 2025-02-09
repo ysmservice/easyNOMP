@@ -1,0 +1,71 @@
+{
+    "enabled": false,
+    "coin": "handshake.json",
+
+    "address": "hs1...",
+
+    "rewardRecipients": {
+        "hs1...": 1.0
+    },
+
+    "paymentProcessing": {
+        "enabled": true,
+        "paymentInterval": 300,
+        "minimumPayment": 0.1,
+        "daemon": {
+            "host": "127.0.0.1",
+            "port": 12037,
+            "user": "rpcuser",
+            "password": "rpcpassword"
+        }
+    },
+
+    "ports": {
+        "3008": {
+            "diff": 1000000,
+            "varDiff": {
+                "minDiff": 500000,
+                "maxDiff": 5000000,
+                "targetTime": 15,
+                "retargetTime": 90,
+                "variancePercent": 30
+            }
+        },
+        "3009": {
+            "diff": 2000000,
+            "varDiff": {
+                "minDiff": 1000000,
+                "maxDiff": 10000000,
+                "targetTime": 15,
+                "retargetTime": 90,
+                "variancePercent": 30
+            }
+        }
+    },
+
+    "daemons": [
+        {
+            "host": "127.0.0.1",
+            "port": 12037,
+            "user": "rpcuser",
+            "password": "rpcpassword"
+        }
+    ],
+
+    "p2p": {
+        "enabled": true,
+        "host": "127.0.0.1",
+        "port": 12038
+    },
+
+    "mposMode": {
+        "enabled": false,
+        "host": "127.0.0.1",
+        "port": 3306,
+        "user": "me",
+        "password": "mypass",
+        "database": "hns",
+        "checkPassword": true,
+        "autoCreateWorker": false
+    }
+}

@@ -1,7 +1,7 @@
 {
-    "name": "Ravencoin",
-    "symbol": "RVN",
-    "algorithm": "x16rv2",
+    "name": "Ocean Bitcoin",
+    "symbol": "OBTC",
+    "algorithm": "heavyhash",
     
     "requireShielding": false,
     "payFoundersReward": false,
@@ -10,25 +10,25 @@
     
     "rewards": {
         "reward": "block.reward",
-        "halving": 2100000,
+        "halving": 210000,
         "startBlockHeight": 1,
-        "initialReward": 5000
+        "initialReward": 50
     },
     
-    "address": "RN2uG89PxraSd1BMhYKUh6DuQfx1Zz6QHw",
-    "pubKeyHash": "3c",
-    "scriptHash": "7a",
+    "address": "bc1qn6dajkx3g8h87yfmkp9pyvh2q2ddhwvqm4ymm5",
+    "pubKeyHash": "00",
+    "scriptHash": "05",
     "segwitEnabled": true,
     
     "txfee": 0.0001,
     
-    "blockTimeMinutes": 1,
+    "blockTimeMinutes": 10,
     
     "ports": {
         "3333": {
-            "diff": 0.5,
+            "diff": 1,
             "varDiff": {
-                "minDiff": 0.1,
+                "minDiff": 0.5,
                 "maxDiff": 512,
                 "targetTime": 15,
                 "retargetTime": 90,
@@ -39,7 +39,7 @@
             "diff": 32,
             "varDiff": {
                 "minDiff": 16,
-                "maxDiff": 2048,
+                "maxDiff": 1024,
                 "targetTime": 15,
                 "retargetTime": 90,
                 "variancePercent": 30
@@ -50,9 +50,9 @@
     "daemons": [
         {
             "host": "127.0.0.1",
-            "port": 8766,
-            "user": "rvnrpcuser",
-            "password": "rvnrpcpassword"
+            "port": 8332,
+            "user": "obtcrpcuser",
+            "password": "obtcrpcpassword"
         }
     ]
 }

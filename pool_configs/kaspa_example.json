@@ -1,0 +1,77 @@
+{
+    "enabled": false,
+    "coin": "kaspa.json",
+
+    "address": "kaspa:",
+
+    "rewardRecipients": {
+        "kaspa:": 1.0
+    },
+
+    "paymentProcessing": {
+        "enabled": true,
+        "paymentInterval": 300,
+        "minimumPayment": 100,
+        "daemon": {
+            "host": "127.0.0.1",
+            "port": 16110,
+            "user": "",
+            "password": ""
+        }
+    },
+
+    "ports": {
+        "4444": {
+            "diff": 100000,
+            "varDiff": {
+                "minDiff": 50000,
+                "maxDiff": 500000,
+                "targetTime": 15,
+                "retargetTime": 90,
+                "variancePercent": 30
+            }
+        },
+        "4445": {
+            "diff": 200000,
+            "varDiff": {
+                "minDiff": 100000,
+                "maxDiff": 1000000,
+                "targetTime": 15,
+                "retargetTime": 90,
+                "variancePercent": 30
+            }
+        }
+    },
+
+    "daemons": [
+        {
+            "host": "127.0.0.1",
+            "port": 16110,
+            "user": "",
+            "password": ""
+        }
+    ],
+
+    "p2p": {
+        "enabled": true,
+        "host": "127.0.0.1",
+        "port": 16111
+    },
+
+    "mposMode": {
+        "enabled": false,
+        "host": "127.0.0.1",
+        "port": 3306,
+        "user": "me",
+        "password": "mypass",
+        "database": "kas",
+        "checkPassword": true,
+        "autoCreateWorker": false
+    },
+
+    "chainParams": {
+        "targetTimePerBlock": 1,
+        "maxBlockMass": 500000,
+        "targetBlocksPerSecond": 1
+    }
+}

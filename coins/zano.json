@@ -1,0 +1,66 @@
+{
+    "name": "Zano",
+    "symbol": "ZANO",
+    "algorithm": "zano",
+    
+    "requireShielding": false,
+    "payFoundersReward": false,
+    "percentFoundersReward": 0,
+    "maxFoundersRewardBlockHeight": 0,
+    
+    "rewards": {
+        "reward": "block.reward",
+        "halving": 0,
+        "startBlockHeight": 1,
+        "initialReward": 1000000000
+    },
+
+    "address": "Zx...",
+    
+    "txfee": 0.0001,
+    
+    "ports": {
+        "5555": {
+            "diff": 2000,
+            "varDiff": {
+                "minDiff": 1000,
+                "maxDiff": 100000,
+                "targetTime": 15,
+                "retargetTime": 90,
+                "variancePercent": 30
+            }
+        },
+        "5556": {
+            "diff": 5000,
+            "varDiff": {
+                "minDiff": 2500,
+                "maxDiff": 200000,
+                "targetTime": 15,
+                "retargetTime": 90,
+                "variancePercent": 30
+            }
+        }
+    },
+    
+    "daemons": [
+        {
+            "host": "127.0.0.1",
+            "port": 11211,
+            "user": "rpcuser",
+            "password": "rpcpassword"
+        }
+    ],
+
+    "p2p": {
+        "enabled": true,
+        "host": "127.0.0.1",
+        "port": 11212
+    },
+
+    "zanoParams": {
+        "cryptonight_algo": "cryptonight_v8_zano",
+        "pow_algo": "zano_pow",
+        "block_time": 120,
+        "difficulty_target": 120
+    }
+}

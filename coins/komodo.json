@@ -1,0 +1,30 @@
+{
+    "name": "Komodo",
+    "symbol": "KMD",
+    "algorithm": "equihashKMD",
+    "parameters": {
+        "N": 200,
+        "K": 9,
+        "personalization": "ZcashPoW"
+    },
+    "notaryStartHeight": 1,
+    "requireShielding": false,
+    "peerMagic": "f9eee48d",
+    "txfee": 0.0001,
+
+    "explorerGetBlockJSON": "https://kmdexplorer.io/api/getblock?hash=[HASH]",
+    "explorerGetBlockByHeightJSON": "https://kmdexplorer.io/api/getblockhash?height=[HEIGHT]",
+    "explorerGetTXJSON": "https://kmdexplorer.io/api/getrawtransaction?txid=[HASH]&decrypt=1",
+
+    "blockTime": 60,
+    "blockReward": 3,
+    "blockRewardInterval": 43200,
+    "difficultyTarget": 300,
+
+    "daemon": {
+        "host": "127.0.0.1",
+        "port": 7771,
+        "user": "username",
+        "password": "password"
+    }
+}

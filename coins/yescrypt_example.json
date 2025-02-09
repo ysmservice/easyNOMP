@@ -1,0 +1,22 @@
+{
+    "name": "Yescrypt Example",
+    "symbol": "YES",
+    "algorithm": "yescrypt",
+    "normalHashing": true,
+    "reward": "ROI",
+    "rewardMinimum": 1,
+    "rewardMaximum": 5000,
+    "minConfirmations": 10,
+    "port": 3333,
+    "pubKeyHash": "37",
+    "scriptHash": "05",
+    "wif": "80",
+    "txfee": 0.0001,
+    "startHeight": 0,
+    "blockTime": 60,
+    "blockReward": 50,
+    "retargetTime": 600,
+    "diff1": "0x00000fffff000000000000000000000000000000000000000000000000000000",
+    "diffAccuracy": 1000000,
+    "maxTargetBits": "1e0fffff"
+}

@@ -219,9 +219,6 @@ function SetupForPool(poolOptions, setupFinished) {
 
     var processingConfig = poolOptions.paymentProcessing;
     
-    // Determine the daemon type: default is 'btc', override with 'eth' or 'z'
-    var daemonType = poolOptions.coin.daemonType || 'btc';
-    
     var daemon = new Stratum.daemon.interface([processingConfig.daemon], loggerFactory.getLogger('CoinDaemon', coin));
     var redisClient = redis.createClient(poolOptions.redis.port, poolOptions.redis.host);
 
@@ -243,94 +240,65 @@ function SetupForPool(poolOptions, setupFinished) {
 
     async.parallel([
         function(callback) {
-          // Validate pool address
-          if (daemonType === 'eth') {
-              // For ETH, use a simple regex check (additional checksum verification can be added)
-              var ethRegex = /^0x[a-fA-F0-9]{40}$/;
-              if (!ethRegex.test(poolOptions.address)) {
-                  logger.error('PP>ERROR> Invalid ETH address: %s', poolOptions.address);
-                  callback(true);
-              } else {
-                  logger.silly('PP> Validated ETH address format: %s', poolOptions.address);
-                  callback();
-              }
-          } else if (daemonType === 'z') {
-              // For a zaddress (e.g. in Zcash), perform a basic check (adjust regex as needed)
-              var zRegex = /^z[a-zA-Z0-9]{94}$/;
-              if (!zRegex.test(poolOptions.address)) {
-                  logger.error('PP>ERROR> Invalid zaddress: %s', poolOptions.address);
-                  callback(true);
-              } else {
-                  logger.silly('PP> Validated zaddress format: %s', poolOptions.address);
-                  callback();
-              }
-          } else {
-              // BTC (or other) using the daemon's validateaddress RPC command
-              daemon.cmd('validateaddress', [poolOptions.address], function(result) {
-                  logger.silly('PP> Validated address %s with result %s', poolOptions.address, JSON.stringify(result));
-                  if (result.error) {
-                      logger.error('PP>ERROR> Error with payment processing daemon %s', JSON.stringify(result.error));
-                      callback(true);
-                  } else if (!result.response || !result.response.ismine) {
-                      logger.error('PP>ERROR> Daemon does not own pool address - payment processing cannot be done, %s', JSON.stringify(result.response));
-                      callback(true);
-                  } else {
-                      callback();
-                  }
-              }, true);
-          }
+          daemon.cmd('validateaddress', [poolOptions.address], function(result) {
+            logger.silly('PP> Validated %s address with result %s', poolOptions.address, JSON.stringify(result));
+            if (result.error) {
+              logger.error('PP>ERROR> Error with payment processing daemon %s', JSON.stringify(result.error));
+              callback(true);
+            } else if (!result.response || !result.response.ismine) {
+              logger.error('PP>ERROR> Daemon does not own pool address - payment processing can not be done with this daemon, %s', JSON.stringify(result.response));
+              callback(true);
+            } else {
+              callback()
+            }
+          }, true);
         },
         function(callback) {
-          // Check wallet balance
-          if (daemonType === 'eth') {
-              // For ETH (geth) use eth_getBalance
-              daemon.cmd('eth_getBalance', [poolOptions.address, 'latest'], function(result) {
-                  if (result.error) {
-                      logger.error('PP>ERROR> Error getting ETH balance: %s', JSON.stringify(result.error));
-                      callback(true);
-                  } else {
-                      // Assume result.response is a hex string (in Wei)
-                      var balanceWei = result.response;
-                      var balance = parseInt(balanceWei, 16) / 1e18;
-                      logger.debug('PP>ETH> Wallet balance %s ETH', balance);
-                      callback();
-                  }
-              }, true, true);
-          } else if (daemonType === 'z') {
-              // For Z coins using a zaddress, use the z-specific RPC command
-              daemon.cmd('z_getbalance', [poolOptions.address], function(result) {
-                  if (result.error) {
-                      logger.error('PP>ERROR> Error getting Z balance: %s', JSON.stringify(result.error));
-                      callback(true);
-                  } else {
-                      var balance = result.response; // assume result.response is in coin units
-                      logger.debug('PP>Z> Wallet balance %s', balance);
-                      callback();
-                  }
-              }, true, true);
-          } else {
-              // BTC getbalance RPC command
-              daemon.cmd('getbalance', [], function(result) {
-                  if (result.error) {
-                      callback(true);
-                      return;
-                  }
-                  try {
-                      var resBal = result.response;
-                      logger.debug("PP>WARN> getbalance RPC reply: %s", resBal.toString());
-                      if (resBal >= 0.0) {
-                          logger.debug("PP>WARN> daemon wallet balance test passed, JSON: %s", resBal.toString());
-                      }
-                      else {
-                          logger.debug("PP>WARN> daemon wallet balance test failed, JSON: %s", resBal.toString());
-                          callback(true);
-                      }
-                  } catch (e) {
-                      logger.error('PP>ERROR> Error parsing balance: %s', JSON.stringify(result.data));
-                      callback(true);
-                  }
-              }, true, true);
-          }
+          daemon.cmd('getbalance', [], function(result) {
+            
+            var wasICaught = false;
+            
+            if (result.error) {
+              callback(true);
+              return;
+            }
+            
+            try {
+                
+                var resBal = result.response;
+                
+                logger.debug("PP>WARN> getbalance RPC reply is being tested for validity", resBal.toString());
+                
+                if (resBal >= 0.0) {
+                    
+                    logger.debug("PP>WARN> daemon wallet balance >= 0.0 PASSED - JSON: %s", resBal.toString());
+                
+                }
+                else {
+                    
+                    logger.debug("PP>WARN> daemon wallet balance >= 0.0 FAILED - JSON: %s", resBal.toString());
+
+                    // flag as caught so the pool aborts booting with error :)                    
+                    wasICaught = true;
+                    
+                }
+              
+            } 
+            catch (e) {
+              console.log(e);
+              logger.error('PP>ERROR> Error detecting number of satoshis in a coin, cannot do payment processing. Tried parsing: %s', JSON.stringify(result.data));
+              wasICaught = true;
+            } 
+            finally {
+              if (wasICaught) {
+                callback(true);
+              } else {
+                callback();
+              }
+            }
+            
+    
+          }, true, true);
         }
     ], function(err) {
     if (err) {
@@ -363,50 +331,16 @@ function SetupForPool(poolOptions, setupFinished) {
 
     var cacheNetworkStats = function() {
       var params = null;
-      if (daemonType === 'eth') {
-        // For ETH: get block number, hashrate and difficulty via appropriate RPC calls
-        daemon.cmd('eth_blockNumber', [], function(result) {
-          if (!result || result.error) {
-            logger.error('PP>ERROR> Error with RPC call eth_blockNumber ' + JSON.stringify(result && result.error));
-            return;
-          }
-          var coin = poolOptions.coin.name;
-          var finalRedisCommands = [];
-          var blockNumber = parseInt(result.response, 16);
-          finalRedisCommands.push(['hset', coin + ':stats', 'networkBlocks', blockNumber]);
-          daemon.cmd('eth_hashrate', [], function(result) {
-            if (!result || result.error) {
-              logger.error('PP>ERROR> Error with RPC call eth_hashrate ' + JSON.stringify(result && result.error));
-              return;
-            }
-            var hashrate = parseInt(result.response, 16);
-            finalRedisCommands.push(['hset', coin + ':stats', 'networkSols', hashrate]);
-            daemon.cmd('eth_getBlockByNumber', ['latest', false], function(result) {
-              if (!result || result.error) {
-                logger.error('PP>ERROR> Error with RPC call eth_getBlockByNumber ' + JSON.stringify(result && result.error));
-                return;
-              }
-              var difficulty = parseInt(result.response.difficulty, 16);
-              finalRedisCommands.push(['hset', coin + ':stats', 'networkDiff', difficulty]);
-              if (finalRedisCommands.length <= 0) return;
-              redisClient.multi(finalRedisCommands).exec(function(error, results) {
-                if (error) {
-                  logger.error('PP>ERROR> Error with redis during call to cacheNetworkStats() ' + JSON.stringify(error));
-                  return;
-                }
-              });
-            }, true);
-          }, true);
-        }, true);
-      } else {
-        // ...existing cacheNetworkStats code for BTC/z coins...
-        daemon.cmd('getmininginfo', params, function(result) {
+      daemon.cmd('getmininginfo', params,
+        function(result) {
           if (!result || result.error || result[0].error || !result[0].response) {
-            logger.error('PP>ERROR> Error with RPC call getmininginfo ' + JSON.stringify(result[0] && result[0].error));
+            logger.error('PP>ERROR> Error with RPC call getmininginfo ' + JSON.stringify(result[0].error));
             return;
           }
+    
           var coin = poolOptions.coin.name;
           var finalRedisCommands = [];
+    
           if (result[0].response.blocks !== null) {
             finalRedisCommands.push(['hset', coin + ':stats', 'networkBlocks', result[0].response.blocks]);
           }
@@ -416,34 +350,40 @@ function SetupForPool(poolOptions, setupFinished) {
           if (result[0].response.networkhashps !== null) {
             finalRedisCommands.push(['hset', coin + ':stats', 'networkSols', result[0].response.networkhashps]);
           }
-          daemon.cmd('getnetworkinfo', params, function(result) {
-            if (!result || result.error || result[0].error || !result[0].response) {
-              logger.error('PP>ERROR> Error with RPC call getnetworkinfo ' + JSON.stringify(result[0] && result[0].error));
-              return;
-            }
-            if (result[0].response.connections !== null) {
-              finalRedisCommands.push(['hset', coin + ':stats', 'networkConnections', result[0].response.connections]);
-            }
-            if (result[0].response.version !== null) {
-              finalRedisCommands.push(['hset', coin + ':stats', 'networkVersion', result[0].response.version]);
-            }
-            if (result[0].response.subversion !== null) {
-              finalRedisCommands.push(['hset', coin + ':stats', 'networkSubVersion', result[0].response.subversion]);
-            }
-            if (result[0].response.protocolversion !== null) {
-              finalRedisCommands.push(['hset', coin + ':stats', 'networkProtocolVersion', result[0].response.protocolversion]);
-            }
-            if (finalRedisCommands.length <= 0) return;
-            redisClient.multi(finalRedisCommands).exec(function(error, results) {
-              if (error) {
-                logger.error('PP>ERROR> Error with redis during call to cacheNetworkStats() ' + JSON.stringify(error));
+    
+          daemon.cmd('getnetworkinfo', params,
+            function(result) {
+              if (!result || result.error || result[0].error || !result[0].response) {
+                logger.error('PP>ERROR> Error with RPC call getnetworkinfo ' + JSON.stringify(result[0].error));
                 return;
               }
-            });
-          });
-        });
-      }
-    };
+              if (result[0].response.connections !== null) {
+                finalRedisCommands.push(['hset', coin + ':stats', 'networkConnections', result[0].response.connections]);
+              }
+              if (result[0].response.version !== null) {
+                finalRedisCommands.push(['hset', coin + ':stats', 'networkVersion', result[0].response.version]);
+              }
+              if (result[0].response.subversion !== null) {
+                finalRedisCommands.push(['hset', coin + ':stats', 'networkSubVersion', result[0].response.subversion]);
+              }
+              if (result[0].response.protocolversion !== null) {
+                finalRedisCommands.push(['hset', coin + ':stats', 'networkProtocolVersion', result[0].response.protocolversion]);
+              }
+    
+              if (finalRedisCommands.length <= 0)
+                  return;
+    
+              redisClient.multi(finalRedisCommands).exec(function(error, results) {
+                if (error) {
+                    logger.error('PP>ERROR> Error with redis during call to cacheNetworkStats() ' + JSON.stringify(error));
+                    return;
+                }
+              });
+            }
+          );
+        }
+      );
+    }
     
     // network stats caching every 58 seconds
     var stats_interval = 58 * 1000;
@@ -1034,34 +974,11 @@ function SetupForPool(poolOptions, setupFinished) {
           /* CHANGED TO INSTANTSEND (NEEDS CONFIG OPTION) */
           // Send Many needs custom for each coin... Or general one like below that SHOULD work with all forks. (, false, "Miner Payment", feeAddresses, true, false)
 
-          // Modify payment RPC command per coin type:
-          var sendCommand, sendParams;
-          if (daemonType === 'eth') {
-            // For ETH, assume individual transactions must be sent.
-            // For demonstration, we call a helper that iterates over addressAmounts.
-            sendManyEth(addressAccount, addressAmounts, function(result) {
-              if (result.error && result.error.code === -6) {
-                var higherPercent = withholdPercent.plus(new BigNumber(0.01));
-                logger.warn('PP> Not enough funds for tx fees, decreasing rewards by %s%% and retrying', higherPercent.toString(10));
-                trySend(higherPercent);
-              } else if (result.error) {
-                // ...existing error handling...
-              } else {
-                // ...existing success handling...
-              }
-            });
-            return;
-          } else if (daemonType === 'z' || daemonType === 'horizen') {
-            sendCommand = 'z_sendmany';
-            sendParams = [addressAccount || '', addressAmounts, 1, ""];
-          } else {
-            sendCommand = 'sendmany';
-            sendParams = [addressAccount || '', addressAmounts, 1, ""];
-          }
-          daemon.cmd(sendCommand, sendParams, function(result) {
+          daemon.cmd('sendmany', [addressAccount || '', addressAmounts, 1, ""], function(result) {
+            //Check if payments failed because wallet doesn't have enough coins to pay for tx fees
             if (result.error && result.error.code === -6) {
               var higherPercent = withholdPercent.plus(new BigNumber(0.01));
-              logger.warn('PP> Not enough funds for tx fees, decreasing rewards by %s%% and retrying', higherPercent.toString(10));
+              logger.warn('PP> Not enough funds to cover the tx fees for sending out payments, decreasing rewards by %s% and retrying');
               trySend(higherPercent);
             } else if (result.error) {
               logger.error('PP> Error trying to send payments with RPC sendmany %s', JSON.stringify(result.error));
@@ -1103,6 +1020,11 @@ function SetupForPool(poolOptions, setupFinished) {
               callback(null, workers, rounds, paymentsUpdate);
             }
           }, true, true);
+          
+                   
+          
+          
+          
         };
         trySend(new BigNumber(0));
 
@@ -1284,27 +1206,5 @@ function SetupForPool(poolOptions, setupFinished) {
     return address;
   };
 
-}
 
-// Helper stub for ETH sendMany (user to implement actual ETH transaction handling)
-function sendManyEth(fromAddress, payments, cb) {
-  // Iterate payments object and send individual transactions with eth_sendTransaction.
-  // This is a placeholder implementation.
-  async.eachOf(payments, function(amount, toAddress, callback) {
-    // Construct a basic transaction object.
-    var txObj = {
-      from: fromAddress,
-      to: toAddress,
-      value: "0x" + (new BigNumber(amount).times(1e18)).toString(16)
-    };
-    // Call RPC for each transaction:
-    // Assuming daemon.cmd supports eth_sendTransaction
-    daemon.cmd('eth_sendTransaction', [txObj], function(result) {
-      if (result.error) return callback(result.error);
-      callback();
-    }, true);
-  }, function(err) {
-    if (err) cb({ error: err });
-    else cb({ response: 'ETH payments sent' });
-  });
 }

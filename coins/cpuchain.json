@@ -1,0 +1,25 @@
+{
+    "name": "CPUchain",
+    "symbol": "CPU",
+    "algorithm": "yespowerr16",
+    "parameters": {
+        "N": 2048,
+        "r": 16,
+        "p": 1
+    },
+    "peerMagic": "70637075",
+    "txfee": 0.0001,
+    "explorerGetBlockJSON": "https://explorer.cpuchain.org/api/block/[HASH]",
+    "explorerGetBlockByHeightJSON": "https://explorer.cpuchain.org/api/blockhash/[HEIGHT]",
+    "explorerGetTXJSON": "https://explorer.cpuchain.org/api/tx/[HASH]",
+    "blockTime": 60,
+    "blockReward": 50,
+    "blockRewardInterval": 43200,
+    "difficultyTarget": 300,
+    "daemon": {
+        "host": "127.0.0.1",
+        "port": 19707,
+        "user": "username",
+        "password": "password"
+    }
+}

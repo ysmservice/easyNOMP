@@ -1,0 +1,78 @@
+{
+    "enabled": false,
+    "coin": "zano.json",
+
+    "address": "Zx...",
+
+    "rewardRecipients": {
+        "Zx...": 1.0
+    },
+
+    "paymentProcessing": {
+        "enabled": true,
+        "paymentInterval": 300,
+        "minimumPayment": 0.1,
+        "daemon": {
+            "host": "127.0.0.1",
+            "port": 11211,
+            "user": "rpcuser",
+            "password": "rpcpassword"
+        }
+    },
+
+    "ports": {
+        "5555": {
+            "diff": 2000,
+            "varDiff": {
+                "minDiff": 1000,
+                "maxDiff": 100000,
+                "targetTime": 15,
+                "retargetTime": 90,
+                "variancePercent": 30
+            }
+        },
+        "5556": {
+            "diff": 5000,
+            "varDiff": {
+                "minDiff": 2500,
+                "maxDiff": 200000,
+                "targetTime": 15,
+                "retargetTime": 90,
+                "variancePercent": 30
+            }
+        }
+    },
+
+    "daemons": [
+        {
+            "host": "127.0.0.1",
+            "port": 11211,
+            "user": "rpcuser",
+            "password": "rpcpassword"
+        }
+    ],
+
+    "p2p": {
+        "enabled": true,
+        "host": "127.0.0.1",
+        "port": 11212
+    },
+
+    "mposMode": {
+        "enabled": false,
+        "host": "127.0.0.1",
+        "port": 3306,
+        "user": "me",
+        "password": "mypass",
+        "database": "zano",
+        "checkPassword": true,
+        "autoCreateWorker": false
+    },
+
+    "chainParams": {
+        "cryptonight_algo": "cryptonight_v8_zano",
+        "pow_algo": "zano_pow",
+        "block_time": 120,
+        "difficulty_target": 120
+    }
+}

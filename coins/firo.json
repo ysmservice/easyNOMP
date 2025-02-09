@@ -1,0 +1,24 @@
+{
+    "name": "Firo",
+    "symbol": "FIRO",
+    "algorithm": "firopow",
+    "parameters": {
+        "epoch_length": 7500,
+        "dag_size": 2147483648,
+        "cache_size": 16777216
+    },
+    "peerMagic": "c1f7c0c0",
+    "txfee": 0.0001,
+    "explorerGetBlockJSON": "https://explorer.firo.org/api/block/[HASH]",
+    "explorerGetBlockByHeightJSON": "https://explorer.firo.org/api/blockhash/[HEIGHT]",
+    "explorerGetTXJSON": "https://explorer.firo.org/api/tx/[HASH]",
+    "blockTime": 150,
+    "blockReward": 6.25,
+    "rewardMinimum": 0.01,
+    "daemon": {
+        "host": "127.0.0.1",
+        "port": 8888,
+        "user": "username",
+        "password": "password"
+    }
+}

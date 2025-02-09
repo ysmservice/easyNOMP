@@ -1,0 +1,25 @@
+{
+    "name": "Koto",
+    "symbol": "KOTO",
+    "algorithm": "yescryptR32",
+    "parameters": {
+        "N": 2048,
+        "r": 32,
+        "p": 1
+    },
+    "peerMagic": "6f746f6b",
+    "txfee": 0.0001,
+    "explorerGetBlockJSON": "https://insight.kotocoin.info/api/block/[HASH]",
+    "explorerGetBlockByHeightJSON": "https://insight.kotocoin.info/api/blockhash/[HEIGHT]",
+    "explorerGetTXJSON": "https://insight.kotocoin.info/api/tx/[HASH]",
+    "blockTime": 60,
+    "blockReward": 50,
+    "blockRewardInterval": 43200,
+    "difficultyTarget": 300,
+    "daemon": {
+        "host": "127.0.0.1",
+        "port": 8432,
+        "user": "username",
+        "password": "password"
+    }
+}

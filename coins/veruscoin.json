@@ -1,7 +1,7 @@
 {
-    "name": "Ravencoin",
-    "symbol": "RVN",
-    "algorithm": "x16rv2",
+    "name": "VerusCoin",
+    "symbol": "VRSC",
+    "algorithm": "verushash",
     
     "requireShielding": false,
     "payFoundersReward": false,
@@ -12,12 +12,13 @@
         "reward": "block.reward",
         "halving": 2100000,
         "startBlockHeight": 1,
-        "initialReward": 5000
+        "initialReward": 50
     },
     
-    "address": "RN2uG89PxraSd1BMhYKUh6DuQfx1Zz6QHw",
+    "address": "RYX6RYN6RnKXbfpwN9yZzKPjHwZxPX8YGv",
+    "peerMagic": "03753236",
     "pubKeyHash": "3c",
-    "scriptHash": "7a",
+    "scriptHash": "55",
     "segwitEnabled": true,
     
     "txfee": 0.0001,
@@ -34,25 +35,6 @@
                 "retargetTime": 90,
                 "variancePercent": 30
             }
-        },
-        "3334": {
-            "diff": 32,
-            "varDiff": {
-                "minDiff": 16,
-                "maxDiff": 2048,
-                "targetTime": 15,
-                "retargetTime": 90,
-                "variancePercent": 30
-            }
         }
-    },
-    
-    "daemons": [
-        {
-            "host": "127.0.0.1",
-            "port": 8766,
-            "user": "rvnrpcuser",
-            "password": "rvnrpcpassword"
-        }
-    ]
+    }
 }

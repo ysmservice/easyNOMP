@@ -1,0 +1,65 @@
+{
+    "name": "Kaspa",
+    "symbol": "KAS",
+    "algorithm": "kaspa",
+    
+    "requireShielding": false,
+    "payFoundersReward": false,
+    "percentFoundersReward": 0,
+    "maxFoundersRewardBlockHeight": 0,
+    
+    "rewards": {
+        "reward": "block.reward",
+        "halving": 0,
+        "startBlockHeight": 1,
+        "initialReward": 500
+    },
+
+    "address": "kaspa:",
+    
+    "txfee": 0.00001,
+    
+    "ports": {
+        "4444": {
+            "diff": 100000,
+            "varDiff": {
+                "minDiff": 50000,
+                "maxDiff": 500000,
+                "targetTime": 15,
+                "retargetTime": 90,
+                "variancePercent": 30
+            }
+        },
+        "4445": {
+            "diff": 200000,
+            "varDiff": {
+                "minDiff": 100000,
+                "maxDiff": 1000000,
+                "targetTime": 15,
+                "retargetTime": 90,
+                "variancePercent": 30
+            }
+        }
+    },
+    
+    "daemons": [
+        {
+            "host": "127.0.0.1",
+            "port": 16110,
+            "user": "",
+            "password": ""
+        }
+    ],
+
+    "p2p": {
+        "enabled": true,
+        "host": "127.0.0.1",
+        "port": 16111
+    },
+
+    "kaspaParams": {
+        "targetTimePerBlock": 1,
+        "maxBlockMass": 500000,
+        "targetBlocksPerSecond": 1
+    }
+}

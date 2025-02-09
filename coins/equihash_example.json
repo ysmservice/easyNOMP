@@ -1,0 +1,21 @@
+{
+    "name": "Equihash Example",
+    "symbol": "EQH",
+    "algorithm": "equihash",
+    "parameters": {
+        "N": 200,
+        "K": 9,
+        "personalization": "ZcashPoW"
+    },
+    "requireShielding": true,
+    "payFoundersReward": true,
+    "percentFoundersReward": 20,
+    "maxFoundersRewardBlockHeight": 849999,
+    "foundersRewardAddressChangeInterval": 17500,
+    "vFoundersRewardAddress": [
+        "t3Vz22vK5z2LcKEdg16thdDWCRXmSE4vCDm",
+        "t3cL9AucCajm3HXDhb5jqdPLbach7UZFuy1",
+        "t3fqvkzrrNaMcamkQMwAyHRjfDdM2xQvDTR"
+    ],
+    "txfee": 0.0004
+}

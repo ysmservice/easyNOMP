@@ -1,0 +1,68 @@
+{
+    "enabled": true,
+    "coin": "yescrypt_example.json",
+
+    "address": "YOUR_WALLET_ADDRESS",
+
+    "rewardRecipients": {
+        "POOL_FEE_ADDRESS": 1.0
+    },
+
+    "paymentProcessing": {
+        "enabled": true,
+        "paymentInterval": 300,
+        "minimumPayment": 0.01,
+        "daemon": {
+            "host": "127.0.0.1",
+            "port": 9998,
+            "user": "rpcuser",
+            "password": "rpcpassword"
+        }
+    },
+
+    "ports": {
+        "3333": {
+            "diff": 32,
+            "varDiff": {
+                "minDiff": 8,
+                "maxDiff": 512,
+                "targetTime": 15,
+                "retargetTime": 90,
+                "variancePercent": 30
+            }
+        },
+        "3256": {
+            "diff": 256,
+            "varDiff": {
+                "minDiff": 128,
+                "maxDiff": 512,
+                "targetTime": 15,
+                "retargetTime": 90,
+                "variancePercent": 30
+            }
+        }
+    },
+
+    "daemons": [
+        {
+            "host": "127.0.0.1",
+            "port": 9998,
+            "user": "rpcuser",
+            "password": "rpcpassword"
+        }
+    ],
+
+    "p2p": {
+        "enabled": false
+    },
+
+    "api": {
+        "enabled": true,
+        "hashrateWindow": 300,
+        "updateInterval": 5,
+        "port": 8080,
+        "blocks": 30,
+        "payments": 30,
+        "password": "your_password"
+    }
+}

@@ -1,0 +1,64 @@
+{
+    "name": "Beam",
+    "symbol": "BEAM",
+    "algorithm": "beamhash",
+    
+    "requireShielding": false,
+    "payFoundersReward": true,
+    "percentFoundersReward": 20,
+    "maxFoundersRewardBlockHeight": 5000000,
+    
+    "rewards": {
+        "reward": "block.reward",
+        "halving": 4000000,
+        "startBlockHeight": 1,
+        "initialReward": 80
+    },
+    
+    "address": "2483cd4f5e07959f5e5d3d5b0555f3c25e67f1f45644fba3f0810be3acb50ad9a1c",
+    "pubKeyHash": "32",
+    "scriptHash": "39",
+    "segwitEnabled": false,
+    
+    "txfee": 0.001,
+    
+    "blockTimeMinutes": 1,
+    
+    "ports": {
+        "3333": {
+            "diff": 4,
+            "varDiff": {
+                "minDiff": 2,
+                "maxDiff": 2048,
+                "targetTime": 15,
+                "retargetTime": 90,
+                "variancePercent": 30
+            }
+        },
+        "3334": {
+            "diff": 64,
+            "varDiff": {
+                "minDiff": 32,
+                "maxDiff": 4096,
+                "targetTime": 15,
+                "retargetTime": 90,
+                "variancePercent": 30
+            }
+        }
+    },
+    
+    "daemons": [
+        {
+            "host": "127.0.0.1",
+            "port": 8732,
+            "user": "rpcuser",
+            "password": "rpcpassword"
+        }
+    ],
+    
+    "beamHashParams": {
+        "version": 3,
+        "N": 144,
+        "K": 5
+    }
+}

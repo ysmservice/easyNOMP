@@ -1,7 +1,7 @@
 {
-    "name": "Ravencoin",
-    "symbol": "RVN",
-    "algorithm": "x16rv2",
+    "name": "Ethereum",
+    "symbol": "ETH",
+    "algorithm": "ethash",
     
     "requireShielding": false,
     "payFoundersReward": false,
@@ -10,36 +10,33 @@
     
     "rewards": {
         "reward": "block.reward",
-        "halving": 2100000,
+        "halving": 0,
         "startBlockHeight": 1,
-        "initialReward": 5000
+        "initialReward": 2
     },
     
-    "address": "RN2uG89PxraSd1BMhYKUh6DuQfx1Zz6QHw",
-    "pubKeyHash": "3c",
-    "scriptHash": "7a",
-    "segwitEnabled": true,
+    "address": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
     
-    "txfee": 0.0001,
+    "txfee": 0.002,
     
-    "blockTimeMinutes": 1,
+    "blockTimeMinutes": 0.25,
     
     "ports": {
         "3333": {
-            "diff": 0.5,
+            "diff": 2000000000,
             "varDiff": {
-                "minDiff": 0.1,
-                "maxDiff": 512,
+                "minDiff": 1000000000,
+                "maxDiff": 9000000000,
                 "targetTime": 15,
                 "retargetTime": 90,
                 "variancePercent": 30
             }
         },
         "3334": {
-            "diff": 32,
+            "diff": 4000000000,
             "varDiff": {
-                "minDiff": 16,
-                "maxDiff": 2048,
+                "minDiff": 2000000000,
+                "maxDiff": 12000000000,
                 "targetTime": 15,
                 "retargetTime": 90,
                 "variancePercent": 30
@@ -50,9 +47,15 @@
     "daemons": [
         {
             "host": "127.0.0.1",
-            "port": 8766,
-            "user": "rvnrpcuser",
-            "password": "rvnrpcpassword"
+            "port": 8545,
+            "user": "",
+            "password": ""
         }
-    ]
+    ],
+
+    "ethashParams": {
+        "epochLength": 30000,
+        "dagSize": 4294967296,
+        "cacheSize": 16777216
+    }
 }

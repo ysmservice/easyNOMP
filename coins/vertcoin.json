@@ -1,0 +1,50 @@
+{
+    "name": "Vertcoin",
+    "symbol": "VTC",
+    "algorithm": "verthash",
+    
+    "requireShielding": false,
+    "payFoundersReward": false,
+    "percentFoundersReward": 0,
+    "maxFoundersRewardBlockHeight": 0,
+    
+    "rewards": {
+        "reward": "block.reward",
+        "halving": 840000,
+        "startBlockHeight": 1,
+        "initialReward": 50
+    },
+    
+    "address": "Vcy4YExnePXLKpFg4BaEHs4YPzH2VqFJqY",
+    "pubKeyHash": "47",
+    "scriptHash": "05",
+    "segwitEnabled": true,
+    
+    "txfee": 0.001,
+    
+    "blockTimeMinutes": 2.5,
+    
+    "ports": {
+        "3333": {
+            "diff": 32,
+            "varDiff": {
+                "minDiff": 8,
+                "maxDiff": 512,
+                "targetTime": 15,
+                "retargetTime": 90,
+                "variancePercent": 30
+            }
+        }
+    },
+    
+    "daemons": [
+        {
+            "host": "127.0.0.1",
+            "port": 5888,
+            "user": "vtcrpcuser",
+            "password": "vtcrpcpassword"
+        }
+    ],
+    
+    "verthashDataFile": "verthash.dat"
+}

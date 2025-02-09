@@ -1,7 +1,7 @@
 {
-    "name": "Ravencoin",
-    "symbol": "RVN",
-    "algorithm": "x16rv2",
+    "name": "Raptoreum",
+    "symbol": "RTM",
+    "algorithm": "ghostrider",
     
     "requireShielding": false,
     "payFoundersReward": false,
@@ -10,12 +10,12 @@
     
     "rewards": {
         "reward": "block.reward",
-        "halving": 2100000,
+        "halving": 8760000,
         "startBlockHeight": 1,
-        "initialReward": 5000
+        "initialReward": 50
     },
     
-    "address": "RN2uG89PxraSd1BMhYKUh6DuQfx1Zz6QHw",
+    "address": "RNs3ne88DoNEnXFTqUrj6zrYejeQpcj4jk",
     "pubKeyHash": "3c",
     "scriptHash": "7a",
     "segwitEnabled": true,
@@ -26,10 +26,10 @@
     
     "ports": {
         "3333": {
-            "diff": 0.5,
+            "diff": 1,
             "varDiff": {
-                "minDiff": 0.1,
-                "maxDiff": 512,
+                "minDiff": 0.5,
+                "maxDiff": 1024,
                 "targetTime": 15,
                 "retargetTime": 90,
                 "variancePercent": 30
@@ -51,8 +51,8 @@
         {
             "host": "127.0.0.1",
             "port": 8766,
-            "user": "rvnrpcuser",
-            "password": "rvnrpcpassword"
+            "user": "rpcuser",
+            "password": "rpcpassword"
         }
     ]
 }
